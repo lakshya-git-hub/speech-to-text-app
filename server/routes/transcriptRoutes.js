@@ -31,7 +31,7 @@
 // server/routes/transcriptRoutes.js
 const express = require('express');
 const router = express.Router();
-const Transcript = require('../models/Transcript');
+const Transcript = require('../models/transcript');
 
 // POST /api/transcripts - Save a transcript
 router.post('/', async (req, res) => {
