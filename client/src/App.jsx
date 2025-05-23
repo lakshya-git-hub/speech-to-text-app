@@ -3,13 +3,16 @@ import axios from "axios";
 import "./App.css";
 import TranscriptHistory from "./components/TranscriptHistory";
 
+const API_BASE_URL = import.meta.env.PROD 
+  ? 'https://your-service-name.onrender.com'  // Replace with your actual Render URL
+  : 'http://localhost:5000';
+
 const App = () => {
   const [text, setText] = useState("");
   const [isRecording, setIsRecording] = useState(false);
   const [history, setHistory] = useState([]);
   const [transcriptToDelete, setTranscriptToDelete] = useState(null);
   const recognitionRef = useRef(null);
-  const API_URL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     const SpeechRecognition =
@@ -48,7 +51,7 @@ const App = () => {
 
   const fetchHistory = () => {
     axios
-      .get("http://localhost:5000/api/transcripts")
+      .get(`${API_BASE_URL}/api/transcripts`)
       .then((res) => setHistory(res.data))
       .catch((err) => console.error("Error fetching transcripts:", err));
   };
@@ -62,7 +65,7 @@ const App = () => {
   const confirmDelete = async () => {
     if (!transcriptToDelete) return;
     try {
-      await axios.delete(`http://localhost:5000/api/transcripts/${transcriptToDelete}`);
+      await axios.delete(`${API_BASE_URL}/api/transcripts/${transcriptToDelete}`);
       // Remove the deleted transcript from the state
       setHistory(history.filter(transcript => transcript._id !== transcriptToDelete));
       console.log('✅ Transcript deleted successfully');
@@ -99,7 +102,7 @@ const App = () => {
       const transcriptToSave = recognition.finalTranscript?.().trim() || text.trim();
       if (transcriptToSave !== "") {
         axios
-          .post("http://localhost:5000/api/transcripts", { text: transcriptToSave })
+          .post(`${API_BASE_URL}/api/transcripts`, { text: transcriptToSave })
           .then((res) => {
             setHistory((prevHistory) => [res.data, ...prevHistory]);
             // Don't clear text here
