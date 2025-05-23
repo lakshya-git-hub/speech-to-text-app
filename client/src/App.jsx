@@ -4,7 +4,7 @@ import "./App.css";
 import TranscriptHistory from "./components/TranscriptHistory";
 
 const API_BASE_URL = import.meta.env.PROD 
-  ? 'https://your-service-name.onrender.com'  // Replace with your actual Render URL
+  ? 'https://speech-to-text-backend-sqpg.onrender.com'  // Replace with your actual Render URL
   : 'http://localhost:5000';
 
 const App = () => {
