@@ -15,6 +15,22 @@ const TranscriptHistory = ({ transcripts, onDelete }) => {
         });
   };
 
+  const getLanguageName = (code) => {
+    const languageMap = {
+      'en-US': 'English (US)',
+      'es-ES': 'Spanish',
+      'fr-FR': 'French',
+      'de-DE': 'German',
+      'it-IT': 'Italian',
+      'pt-BR': 'Portuguese',
+      'hi-IN': 'Hindi',
+      'ja-JP': 'Japanese',
+      'ko-KR': 'Korean',
+      'zh-CN': 'Chinese'
+    };
+    return languageMap[code] || code;
+  };
+
   const handleCopy = (text) => {
     navigator.clipboard.writeText(text);
     // Optionally show a confirmation message
@@ -38,7 +54,10 @@ const TranscriptHistory = ({ transcripts, onDelete }) => {
               className={`bg-gray-700 p-6 rounded-lg shadow-lg border-l-4 border-blue-500 ${index === 0 ? 'animate-slide-down' : 'animate-fade-in'}`}
             >
               <div className="flex justify-between items-center mb-3">
-                <span className="text-sm text-gray-400">{t.createdAt ? new Date(t.createdAt).toLocaleString() : 'Invalid Date'}</span>
+                <div className="flex flex-col">
+                  <span className="text-sm text-gray-400">{formatDate(t.createdAt)}</span>
+                  <span className="text-sm text-blue-400 mt-1">🌐 {getLanguageName(t.language)}</span>
+                </div>
                 <div className="flex space-x-3">
                   {/* Copy Button */}
                   <button
