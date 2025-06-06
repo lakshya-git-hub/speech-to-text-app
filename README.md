@@ -21,15 +21,15 @@ A web application that converts speech to text using modern web technologies.
 1. Clone the repository
 2. Install dependencies:
    ```bash
-   # Install server dependencies
-   cd server
+   # Install backend dependencies
+   cd backend
    npm install
 
-   # Install client dependencies
-   cd ../client
+   # Install frontend dependencies
+   cd ../frontend
    npm install
    ```
-3. Create a `.env` file in the server directory with:
+3. Create a `.env` file in the backend directory with:
    ```
    MONGO_URI=your_mongodb_connection_string
    PORT=5000
@@ -37,11 +37,11 @@ A web application that converts speech to text using modern web technologies.
 4. Start the development servers:
    ```bash
    # Start backend server
-   cd server
+   cd backend
    npm run dev
 
    # Start frontend server
-   cd ../client
+   cd ../frontend
    npm run dev
    ```
 
@@ -69,16 +69,16 @@ curl -X POST http://localhost:5000/api/transcripts \
 ## Deployment Steps
 
 ### Deploy Backend (Render, Heroku, etc.)
-1. Push your server code to a GitHub repository.
+1. Push your backend code to a GitHub repository.
 2. Create a new web service on Render/Heroku.
 3. Set environment variables (`MONGO_URI`, `PORT`).
 4. Deploy and note the backend URL (e.g., `https://your-backend.onrender.com`).
 
 ### Deploy Frontend (Netlify, Vercel, etc.)
-1. Push your client code to a GitHub repository.
+1. Push your frontend code to a GitHub repository.
 2. Create a new site on Netlify/Vercel.
-3. Set the build command to `npm run build` and the publish directory to `dist`.
-4. In your frontend, set the API base URL to your deployed backend (see `App.jsx`).
+3. Set the build command to `npm run build` and the publish directory to `dist` in the `frontend` directory.
+4. In your frontend, set the API base URL to your deployed backend (see `frontend/src/App.jsx`).
 5. Deploy and test the app.
 
 ## License
