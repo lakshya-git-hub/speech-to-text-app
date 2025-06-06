@@ -1,4 +1,4 @@
-// client/src/components/AudioRecorder.jsx
+// frontend/src/components/AudioRecorder.jsx
 import { useState, useRef } from 'react';
 import axios from 'axios';
 

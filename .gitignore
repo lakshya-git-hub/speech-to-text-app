@@ -35,5 +35,5 @@ ehthumbs.db
 Thumbs.db
 
 # Upload directory
-backend/uploads/*
-!backend/uploads/.gitkeep 
+server/uploads/*
+!server/uploads/.gitkeep 
