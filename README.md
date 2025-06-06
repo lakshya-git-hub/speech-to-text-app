@@ -45,6 +45,42 @@ A web application that converts speech to text using modern web technologies.
    npm run dev
    ```
 
+## API Usage
+
+### Endpoints
+
+- **GET /api/transcripts**
+  - Fetch all saved transcripts.
+- **POST /api/transcripts**
+  - Save a new transcript.
+  - Body: `{ "text": "Your transcript text", "language": "en-US" }`
+- **DELETE /api/transcripts/:id**
+  - Delete a transcript by its ID.
+- **POST /api/upload**
+  - Upload an audio file for transcription (used by the audio upload feature).
+
+### Example: Save a Transcript
+```bash
+curl -X POST http://localhost:5000/api/transcripts \
+  -H "Content-Type: application/json" \
+  -d '{"text": "Hello world", "language": "en-US"}'
+```
+
+## Deployment Steps
+
+### Deploy Backend (Render, Heroku, etc.)
+1. Push your server code to a GitHub repository.
+2. Create a new web service on Render/Heroku.
+3. Set environment variables (`MONGO_URI`, `PORT`).
+4. Deploy and note the backend URL (e.g., `https://your-backend.onrender.com`).
+
+### Deploy Frontend (Netlify, Vercel, etc.)
+1. Push your client code to a GitHub repository.
+2. Create a new site on Netlify/Vercel.
+3. Set the build command to `npm run build` and the publish directory to `dist`.
+4. In your frontend, set the API base URL to your deployed backend (see `App.jsx`).
+5. Deploy and test the app.
+
 ## License
 
 MIT 

@@ -96,3 +96,112 @@
   animation: slide-down 0.5s ease-out;
 }
 
+/* Transcript History Section Enhancements */
+.transcript-history-container {
+  background: linear-gradient(135deg, #232946 80%, #1a1a2e 100%);
+  border-radius: 1.5rem;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  padding: 2.5rem 2rem 2rem 2rem;
+  margin: 0 auto;
+  max-width: 420px;
+}
+
+.transcript-history-header {
+  display: flex;
+  align-items: center;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #3fa7f4;
+  margin-bottom: 1.5rem;
+  gap: 0.5rem;
+}
+
+.transcript-search-bar {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  border: none;
+  background: #232946;
+  color: #eaeaea;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.transcript-search-bar:focus {
+  outline: 2px solid #3fa7f4;
+}
+
+.transcript-list {
+  max-height: 420px;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+  scrollbar-width: thin;
+  scrollbar-color: #3fa7f4 #232946;
+}
+.transcript-list::-webkit-scrollbar {
+  width: 8px;
+}
+.transcript-list::-webkit-scrollbar-thumb {
+  background: #3fa7f4;
+  border-radius: 8px;
+}
+.transcript-list::-webkit-scrollbar-track {
+  background: #232946;
+  border-radius: 8px;
+}
+
+.transcript-card {
+  background: #232946;
+  border-radius: 1rem;
+  box-shadow: 0 4px 16px 0 rgba(31, 38, 135, 0.15);
+  padding: 1.5rem 1.25rem;
+  margin-bottom: 1.5rem;
+  border-left: 5px solid #3fa7f4;
+  transition: transform 0.15s, box-shadow 0.15s;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.transcript-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.25);
+  border-left: 5px solid #f9d923;
+}
+
+.transcript-card .transcript-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+.transcript-card .transcript-date {
+  color: #b8c1ec;
+  font-size: 0.95rem;
+}
+.transcript-card .transcript-lang {
+  color: #3fa7f4;
+  font-size: 0.95rem;
+  margin-top: 0.2rem;
+}
+.transcript-card .transcript-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+.transcript-card .transcript-actions button {
+  background: none;
+  border: none;
+  color: #b8c1ec;
+  cursor: pointer;
+  transition: color 0.15s;
+  font-size: 1.1rem;
+}
+.transcript-card .transcript-actions button:hover {
+  color: #f9d923;
+}
+.transcript-card .transcript-text {
+  color: #eaeaea;
+  font-size: 1.08rem;
+  font-weight: 500;
+  word-break: break-word;
+}
+

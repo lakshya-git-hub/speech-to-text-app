@@ -34,35 +34,33 @@ const TranscriptHistory = ({ transcripts, onDelete }) => {
   const handleCopy = (text) => {
     navigator.clipboard.writeText(text);
     // Optionally show a confirmation message
-    console.log('Transcript copied to clipboard!');
     // Add visual feedback (e.g., change button color or show a tooltip)
     // For simplicity, we'll just log for now.
   };
 
   return (
-    <div className="w-full">
+    <div>
       {transcripts.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-12">
           <svg className="w-20 h-20 text-gray-600 mb-4" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.414-1.414L11 9.586V6z" clipRule="evenodd" /></svg>
           <p className="text-gray-400 text-center italic">No transcripts saved yet.</p>
         </div>
       ) : (
-        <ul className="space-y-6">
+        <ul className="transcript-list">
           {transcripts.map((t, index) => (
             <li
               key={t._id}
-              className={`bg-gray-700 p-6 rounded-lg shadow-lg border-l-4 border-blue-500 ${index === 0 ? 'animate-slide-down' : 'animate-fade-in'}`}
+              className={`transcript-card ${index === 0 ? 'animate-slide-down' : 'animate-fade-in'}`}
             >
-              <div className="flex justify-between items-center mb-3">
-                <div className="flex flex-col">
-                  <span className="text-sm text-gray-400">{formatDate(t.createdAt)}</span>
-                  <span className="text-sm text-blue-400 mt-1">🌐 {getLanguageName(t.language)}</span>
+              <div className="transcript-meta">
+                <div>
+                  <span className="transcript-date">{formatDate(t.createdAt)}</span>
+                  <span className="transcript-lang">🌐 {getLanguageName(t.language)}</span>
                 </div>
-                <div className="flex space-x-3">
+                <div className="transcript-actions">
                   {/* Copy Button */}
                   <button
                     onClick={() => handleCopy(t.text)}
-                    className="text-gray-400 hover:text-blue-400 transition duration-150"
                     title="Copy to Clipboard"
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -73,7 +71,6 @@ const TranscriptHistory = ({ transcripts, onDelete }) => {
                   {/* Delete Button */}
                   <button
                     onClick={() => onDelete(t._id)}
-                    className="text-gray-400 hover:text-red-400 transition duration-150"
                     title="Delete Transcript"
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -82,7 +79,7 @@ const TranscriptHistory = ({ transcripts, onDelete }) => {
                   </button>
                 </div>
               </div>
-              <p className="text-gray-200 whitespace-pre-line text-base leading-relaxed">{t.text}</p>
+              <p className="transcript-text">{t.text}</p>
             </li>
           ))}
         </ul>

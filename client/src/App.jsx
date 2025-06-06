@@ -71,7 +71,6 @@ const App = () => {
       await axios.delete(`${API_BASE_URL}/api/transcripts/${transcriptToDelete}`);
       // Remove the deleted transcript from the state
       setHistory(history.filter(transcript => transcript._id !== transcriptToDelete));
-      console.log('✅ Transcript deleted successfully');
     } catch (error) {
       console.error('❌ Failed to delete transcript:', error);
       // Optionally show an error message to the user
@@ -131,7 +130,6 @@ const App = () => {
 
      recognition.onend = () => {
         // Handle the end of the recognition session
-        console.log("Speech recognition ended.");
         setIsRecording(false);
 
         const transcriptToSave = finalTranscriptRef.current.trim();
@@ -144,7 +142,6 @@ const App = () => {
               })
               .then((res) => {
                 setHistory((prevHistory) => [res.data, ...prevHistory]);
-                console.log('Transcript saved successfully', res.data);
                 setIsLoading(false);
               })
               .catch((err) => {
@@ -231,9 +228,9 @@ const App = () => {
       <div className="container mx-auto max-w-6xl">
         <h1 className="text-5xl font-extrabold text-center text-blue-400 mb-12 tracking-wide">🎤 Speech to Text App</h1>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 h-full min-h-[600px]" style={{height: '70vh'}}>
           {/* Recording/Transcription Section */}
-          <div className="bg-gray-800 p-8 rounded-xl shadow-2xl flex flex-col items-center">
+          <div className="bg-gray-800 p-8 rounded-xl shadow-2xl flex flex-col items-center flex-1 min-h-0">
             {/* Language Selection */}
             <div className="w-full mb-6">
               <label htmlFor="language" className="block text-sm font-medium text-gray-300 mb-2">
@@ -254,8 +251,7 @@ const App = () => {
             </div>
 
             <div className={`mic-icon ${isRecording ? "animate-pulse bg-blue-500" : "bg-gray-600"} w-32 h-32 rounded-full flex items-center justify-center mb-8`}>
-              {/* Placeholder for a more elaborate mic icon or animation */}
-              <svg className="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/><path fillRule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clipRule="evenodd"/></svg>
+              <svg className="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path fillRule="evenodd" d="M0 4a3 3 0 013-3h4a3 3 0 013 3v8a3 3 0 01-3 3H3a3 3 0 01-3-3V4zm4 0a1 1 0 00-1 1v6a1 1 0 102 0V5a1 1 0 00-1-1zm6.818 4.032a1 1 0 10-1.636-.324l-3.334 1.667a1 1 0 00-.03.956l1.667 3.334a1 1 0 00.956-.03l3.334-1.667a1 1 0 00-.324-1.636l-1.667-.833z" clipRule="evenodd"/></svg>
             </div>
 
             <div className="flex gap-6 mb-8">
@@ -318,9 +314,8 @@ const App = () => {
           </div>
 
           {/* Transcript History Section */}
-          <div className="bg-gray-800 p-8 rounded-xl shadow-2xl flex flex-col">
+          <div className="bg-gray-800 p-8 rounded-xl shadow-2xl flex flex-col flex-1 min-h-0" style={{height: '100%'}}>
             <h2 className="text-3xl font-bold mb-6 text-blue-400 text-center">📜 Transcript History</h2>
-            
             {/* Search Bar */}
             <div className="mb-6">
               <input
@@ -331,8 +326,7 @@ const App = () => {
                 className="w-full p-3 rounded-lg bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
-
-            <div className="max-h-96 overflow-y-auto pr-4">
+            <div className="flex-1 overflow-y-auto pr-4">
               <TranscriptHistory
                 transcripts={filteredTranscripts}
                 onDelete={handleDeleteTranscript}
